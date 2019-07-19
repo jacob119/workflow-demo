@@ -74,8 +74,6 @@ public abstract class AbstractWorkflow implements Workflow {
 
         log.info(">>{}==[{}]", "Ended Workflow", workflowId);
         log.info("{}", stopWatch.shortSummary());
-        log.info("");
-        log.info("");
         return new ActivityResult(isSuccess, "SUCCESS");
     }
 }
