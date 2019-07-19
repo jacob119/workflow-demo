@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: dev
+
+---
+spring:
+  profiles: dev
+  task:
+    fixedDelay: 1000
+    name: devTask
+ftp:
+  server:
+    ip: 192.168.35.126
+    port: 21
+    user: foo
+    pass: foo
+    localPath: /Users/jacob/Downloads/cccc/
+    fixedDelay: 5000
+---
+spring:
+  profiles: prod
+  task:
+    fixedDelay: 5000
+    name: devTask

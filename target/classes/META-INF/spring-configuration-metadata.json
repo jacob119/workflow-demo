@@ -1,0 +1,11 @@
+{
+  "groups": [
+    {
+      "name": "env",
+      "type": "com.example.demo.config.FTPConfig",
+      "sourceType": "com.example.demo.config.FTPConfig"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}
