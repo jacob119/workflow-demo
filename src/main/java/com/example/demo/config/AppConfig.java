@@ -2,7 +2,6 @@ package com.example.demo.config;
 
 import com.example.demo.activity.Test;
 import com.example.demo.workflow.StandardWorkflow;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;

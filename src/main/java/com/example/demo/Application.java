@@ -1,12 +1,9 @@
 package com.example.demo;
 
 import com.example.demo.activity.Test;
-import com.example.demo.context.Context;
-import com.example.demo.context.StandardContext;
 import com.example.demo.service.AsyncService;
 import com.example.demo.service.FTPService;
-import com.example.demo.workflow.StandardWorkflow;
-import com.example.demo.workflow.Workflow;
+import com.example.demo.service.FileListenerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,9 +17,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 @Slf4j
@@ -41,6 +35,8 @@ public class Application implements ApplicationRunner {
     private AsyncService asyncService;
 
 
+    @Autowired
+    private FileListenerService fileListenerService;
 
     @Autowired
     private ApplicationContext context;
@@ -52,19 +48,25 @@ public class Application implements ApplicationRunner {
     }
 
     @Override
-    public void run(ApplicationArguments args) {
+    public void run(ApplicationArguments args) throws Exception {
 
         Test test = context.getBean(Test.class);
         System.out.println(test.hashCode());
 
         Test test1 = context.getBean(Test.class);
         System.out.println(test1.hashCode());
+
+        // Step 1. File Monitoring on the specific directory.
+        fileListenerService.start();
+
+
+        // Step 2. Pulling some to do.
         while (true) {
             try {
                 Thread.sleep(fixedDelay);
                 //ftpService.open();
 
-
+ /*
                 for (int i = 0; i < 10; i++) {
                     Map<String, Object> parameters1 = new HashMap<>();
                     parameters1.put("id", 10);
@@ -77,6 +79,8 @@ public class Application implements ApplicationRunner {
                     asyncService.doAsync(workflow);
 
                 }
+                */
+
             } catch (Exception ex) {
                 log.error(ex.getLocalizedMessage());
             }
