@@ -139,7 +139,7 @@ public class DemoApplicationTests {
 
             System.out.println("ReplyString : " + ftpClient.getReplyString());
             //System.out.println("ReplyCode : " + ftpClient.getReply());
-            // get details of a file or directory
+            // getName details of a file or directory
             //String remoteFilePath = "Java/CodeLib/FTP.rar";
             String remoteFilePath = " ";
 
@@ -223,7 +223,7 @@ public class DemoApplicationTests {
 
             System.out.println("ReplyString : " + ftpClient.getReplyString());
             //System.out.println("ReplyCode : " + ftpClient.getReply());
-            // get details of a file or directory
+            // getName details of a file or directory
             //String remoteFilePath = "Java/CodeLib/FTP.rar";
             String remoteFilePath = "/";
 

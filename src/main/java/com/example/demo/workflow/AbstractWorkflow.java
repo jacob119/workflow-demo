@@ -19,10 +19,14 @@ public abstract class AbstractWorkflow implements Workflow {
 
     @NonNull
     private String name;
-    private List<Activity> activities;
+    private   List<Activity> activities;
 
-    public AbstractWorkflow(String workflowName, Map<String, Object> parameters) {
-        this.name = workflowName;
+    public AbstractWorkflow(){
+
+    }
+
+    public AbstractWorkflow(String name, Map<String, Object> parameters) {
+        this.name = name;
         this.context = new StandardContext(parameters);
     }
 
@@ -35,10 +39,6 @@ public abstract class AbstractWorkflow implements Workflow {
             );
         }
         return this.activities;
-    }
-
-    public void setActivities(List<Activity> activities) {
-        this.activities = activities;
     }
 
     @Override
@@ -75,5 +75,25 @@ public abstract class AbstractWorkflow implements Workflow {
         log.info(">>{}==[{}]", "Ended Workflow", workflowId);
         log.info("{}", stopWatch.shortSummary());
         return new ActivityResult(isSuccess, "SUCCESS");
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String workflowName) {
+        this.name = workflowName;
+    }
+
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
     }
 }
