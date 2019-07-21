@@ -8,6 +8,9 @@ spring:
   task:
     fixedDelay: 1000
     name: devTask
+management:
+  security:
+    enabled=false:
 ftp:
   server:
     ip: 192.168.35.126
@@ -16,6 +19,14 @@ ftp:
     pass: foo
     localPath: /Users/jacob/Downloads/cccc/
     fixedDelay: 5000
+server:
+  port: 12000
+file:
+  monitor:
+    directory: /Users/jacob/workspace/workflow-demo/inputDir
+    filter: .txt
+    interval: 1
+
 ---
 spring:
   profiles: prod

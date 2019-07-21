@@ -7,6 +7,7 @@ import org.apache.commons.io.filefilter.HiddenFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.monitor.FileAlterationMonitor;
 import org.apache.commons.io.monitor.FileAlterationObserver;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -16,18 +17,20 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class FileListenerService {
 
-    private String baseDir = "/Users/jacob/workspace/workflow-demo/inputDir";
+    @Value("${file.monitor.directory}")
+    private String baseDir;
 
-    private String baseFilter = "*.txt";
+    @Value("${file.monitor.filter}")
+    private String baseFilter;
+
+    @Value("${file.monitor.interval}")
+    private long pollingInt;
 
     private FileAlterationMonitor monitor = null;
 
-    public void start() throws Exception {
-
-        // Monitoring catalogue
+    public void start() {
         // Polling interval 5 seconds
-        long interval = TimeUnit.SECONDS.toMillis(1);
-
+        long interval = TimeUnit.SECONDS.toMillis(pollingInt);
         // Create filters
         IOFileFilter directories = FileFilterUtils.and(
                 FileFilterUtils.directoryFileFilter(),
@@ -35,23 +38,21 @@ public class FileListenerService {
         IOFileFilter files = FileFilterUtils.and(
                 FileFilterUtils.fileFileFilter(),
                 FileFilterUtils.suffixFileFilter(baseFilter));
-        IOFileFilter filter = FileFilterUtils.or(directories, files);
 
+        IOFileFilter filter = FileFilterUtils.or(directories, files);
         // Use filters
         FileAlterationObserver observer = new FileAlterationObserver(new File(baseDir), filter);
-
         // Do not use filters
         //FileAlterationObserver observer = new FileAlterationObserver(new File(rootDir));
         observer.addListener(new FileListener());
-
         // Create a File Change Listener
         FileAlterationMonitor monitor = new FileAlterationMonitor(interval, observer);
-
-
-        log.info("Starting Directory Monitor = {}, BaseFile ={}", baseDir, baseFilter);
-
         // Start monitoring
-        monitor.start();
+        try {
+            monitor.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void stop() throws Exception {
@@ -59,4 +60,5 @@ public class FileListenerService {
             monitor.stop();
         }
     }
+
 }

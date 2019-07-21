@@ -12,44 +12,49 @@ public class FileListener extends FileAlterationListenerAdaptor {
      * File creation execution
      */
     public void onFileCreate(File file) {
-        log. info ("[new]:"+ file. getAbsolutePath ());
+        log.info("[new]:" + file.getAbsolutePath());
     }
+
     /**
      * File creation modification
      */
     public void onFileChange(File file) {
-        log. info ("[modification]:"+ file. getAbsolutePath ());
+        log.info("[modification]:" + file.getAbsolutePath());
     }
+
     /**
      * File deletion
      */
     public void onFileDelete(File file) {
-        log. info ("[delete]:"+ file. getAbsolutePath ());
+        log.info("[delete]:" + file.getAbsolutePath());
     }
+
     /**
      * Directory Creation
      */
     public void onDirectoryCreate(File directory) {
-        log. info ("[new]:"+ directory. getAbsolutePath ());
+        log.info("[new]:" + directory.getAbsolutePath());
     }
+
     /**
      * Directory modification
      */
     public void onDirectoryChange(File directory) {
-        log. info ("[modification]:"+ directory. getAbsolutePath ());
+        log.info("[modification]:" + directory.getAbsolutePath());
     }
+
     /**
      * Directory deletion
      */
     public void onDirectoryDelete(File directory) {
-        log. info ("[delete]:"+ directory. getAbsolutePath ());
+        log.info("[delete]:" + directory.getAbsolutePath());
     }
+
     public void onStart(FileAlterationObserver observer) {
-        // TODO Auto-generated method stub
         super.onStart(observer);
     }
+
     public void onStop(FileAlterationObserver observer) {
-        // TODO Auto-generated method stub
         super.onStop(observer);
     }
 }
