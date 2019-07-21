@@ -15,10 +15,7 @@ import org.springframework.integration.ftp.session.FtpRemoteFileTemplate;
 import org.springframework.messaging.MessagingException;
 import org.springframework.messaging.support.GenericMessage;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
