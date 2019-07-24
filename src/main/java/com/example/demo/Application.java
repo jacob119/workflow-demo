@@ -26,6 +26,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.Assert;
 
@@ -38,7 +40,8 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @SpringBootApplication
 @EnableAsync
-public class Application implements ApplicationRunner {
+@EnableScheduling
+public class Application {
 
     @Value("${ftp.server.fixedDelay}")
     private int fixedDelay = 1000;
@@ -57,7 +60,7 @@ public class Application implements ApplicationRunner {
     private ApplicationContext context;
 
 
-    private int jobCount = 2;
+    private int jobCount = 1;
 
     public static void main(String[] args) {
 
@@ -65,30 +68,7 @@ public class Application implements ApplicationRunner {
         SpringApplication.run(Application.class, args);
     }
 
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
 
-        // Assert.isNull(ftpService, "fptService is null ??");
-
-//        Test test = context.getBean(Test.class);
-//        System.out.println(test.hashCode());
-//
-//        Test test1 = context.getBean(Test.class);
-//        System.out.println(test1.hashCode());
-
-        // Step 1. File Monitoring on the specific directory.
-        //fileListenerService.start();
-
-        // Step 2. Pulling some to do.
-        startWorkflow();
-
-//
-//        while (true) {
-//            Thread.sleep(fixedDelay);
-//
-//
-//        }
-    }
 
     public void startWorkflow() {
         try {
@@ -110,5 +90,12 @@ public class Application implements ApplicationRunner {
         } catch (Exception ex) {
             log.error(ex.getLocalizedMessage());
         }
+    }
+
+
+    @Scheduled(fixedRateString = "5000", initialDelay = 3000)
+    private void scheduleTest() {
+        log.info("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^Starting Workflow...");
+        startWorkflow();
     }
 }
