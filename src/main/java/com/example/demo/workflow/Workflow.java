@@ -21,4 +21,6 @@ public interface Workflow {
     void setContext(Context context);
 
     Context getContext();
+
+    void startWorkflow();
 }

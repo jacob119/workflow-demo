@@ -27,6 +27,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.util.Assert;
 
 import java.io.File;
 import java.util.HashMap;
@@ -35,7 +36,6 @@ import java.util.concurrent.TimeUnit;
 
 
 @Slf4j
-@ComponentScan("com.example.demo.*")
 @SpringBootApplication
 @EnableAsync
 public class Application implements ApplicationRunner {
@@ -56,6 +56,9 @@ public class Application implements ApplicationRunner {
     @Autowired
     private ApplicationContext context;
 
+
+    private int jobCount = 2;
+
     public static void main(String[] args) {
 
         log.info("Staring...");
@@ -65,38 +68,47 @@ public class Application implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        Test test = context.getBean(Test.class);
-        System.out.println(test.hashCode());
+        // Assert.isNull(ftpService, "fptService is null ??");
 
-        Test test1 = context.getBean(Test.class);
-        System.out.println(test1.hashCode());
+//        Test test = context.getBean(Test.class);
+//        System.out.println(test.hashCode());
+//
+//        Test test1 = context.getBean(Test.class);
+//        System.out.println(test1.hashCode());
 
         // Step 1. File Monitoring on the specific directory.
-       fileListenerService.start();
+        //fileListenerService.start();
 
         // Step 2. Pulling some to do.
-        while (true) {
-            try {
-                Thread.sleep(fixedDelay);
-                //ftpService.open();
+        startWorkflow();
 
-                for (int i = 0; i < 1; i++) {
-                    Map<String, Object> parameters1 = new HashMap<>();
-                    parameters1.put("id", 10);
-                    parameters1.put("test", 40);
+//
+//        while (true) {
+//            Thread.sleep(fixedDelay);
+//
+//
+//        }
+    }
 
-                    Context ct  = new StandardContext(parameters1);
-                    Workflow workflow = context.getBean(StandardWorkflow.class);
-                    workflow.setName("workflow:" + i );
-                    workflow.setContext(ct);
-                    asyncService.doAsync(workflow);
+    public void startWorkflow() {
+        try {
 
-                }
+            for (int i = 0; i < jobCount; i++) {
+                Map<String, Object> parameters1 = new HashMap<>();
+                parameters1.put("id", 10);
+                parameters1.put("test", 40);
 
+                Context ct = new StandardContext(parameters1);
+                Workflow workflow = context.getBean(StandardWorkflow.class);
+                workflow.setName("workflow:" + i);
+                workflow.setContext(ct);
+                asyncService.doAsync(workflow);
 
-            } catch (Exception ex) {
-                log.error(ex.getLocalizedMessage());
             }
+
+
+        } catch (Exception ex) {
+            log.error(ex.getLocalizedMessage());
         }
     }
 }

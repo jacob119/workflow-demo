@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 public class AsyncService {
 
 
-    @Async
+    //  @Async
     public void doAsync(Workflow workflow) {
         try {
             Thread.sleep(500);
-            workflow.doWorkflow();
+            workflow.startWorkflow();
             // log.info("doAsync...........{}", workflow.doWorkflow());
         } catch (InterruptedException e) {
             e.printStackTrace();

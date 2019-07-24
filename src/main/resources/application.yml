@@ -31,5 +31,5 @@ file:
 spring:
   profiles: prod
   task:
-    fixedDelay: 5000
+    fixedDelay: 1000
     name: devTask
