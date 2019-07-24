@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="484.29166666666663" y="434.0">com.example.demo.service.FileListenerService</node>
+    <node x="227.49999999999997" y="300.0">com.example.demo.activity.PollerActivity</node>
+    <node x="10.5" y="300.0">com.example.demo.activity.ParserActivity</node>
+    <node x="730.2916666666666" y="489.0">com.example.demo.service.AsyncService</node>
+    <node x="460.29166666666663" y="667.0">com.example.demo.Application</node>
+    <node x="130.97035256410265" y="0.0">com.example.demo.activity.Activity</node>
+    <node x="444.5" y="323.5">com.example.demo.activity.NothingActivity</node>
+    <node x="324.75160256410265" y="123.0">com.example.demo.activity.BaseActivity</node>
+    <node x="0.0" y="961.0">com.example.demo.activity.ActivityResult</node>
+    <node x="218.49999999999997" y="478.0">com.example.demo.workflow.StandardWorkflow</node>
+    <node x="145.66666666666666" y="744.5">com.example.demo.config.AppConfig</node>
+    <node x="615.5" y="289.0">com.example.demo.activity.HDFSActivity</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.demo.activity.PollerActivity" target="com.example.demo.activity.BaseActivity">
+      <point x="49.25" y="-36.5" />
+      <point x="375.25" y="269.0" />
+      <point x="410.93910256410265" y="269.0" />
+      <point x="-12.3125" y="48.0" />
+    </edge>
+    <edge source="com.example.demo.activity.ParserActivity" target="com.example.demo.activity.BaseActivity">
+      <point x="-49.250000000000114" y="-36.5" />
+      <point x="59.749999999999886" y="239.0" />
+      <point x="337.06410256410265" y="239.0" />
+      <point x="-86.1875" y="48.0" />
+    </edge>
+    <edge source="com.example.demo.activity.NothingActivity" target="com.example.demo.activity.BaseActivity">
+      <point x="37.75" y="-13.0" />
+      <point x="557.75" y="259.0" />
+      <point x="460.18910256410265" y="259.0" />
+      <point x="36.9375" y="48.0" />
+    </edge>
+    <edge source="com.example.demo.workflow.StandardWorkflow" target="com.example.demo.activity.ParserActivity">
+      <point x="-43.0" y="-47.5" />
+      <point x="283.0" y="404.0" />
+      <point x="109.0" y="404.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="com.example.demo.Application" target="com.example.demo.service.AsyncService">
+      <point x="91.33333333333331" y="-124.5" />
+      <point x="688.625" y="642.0" />
+      <point x="829.7916666666666" y="642.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="com.example.demo.workflow.StandardWorkflow" target="com.example.demo.activity.PollerActivity">
+      <point x="0.0" y="-47.5" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="com.example.demo.workflow.StandardWorkflow" target="com.example.demo.activity.Activity">
+      <point x="-86.0" y="-47.5" />
+      <point x="239.99999999999997" y="414.0" />
+      <point x="0.0" y="414.0" />
+      <point x="0.0" y="98.0" />
+      <point x="180.22035256410265" y="98.0" />
+      <point x="-49.25" y="36.5" />
+    </edge>
+    <edge source="com.example.demo.Application" target="com.example.demo.service.FileListenerService">
+      <point x="0.0" y="-124.5" />
+      <point x="0.0" y="91.5" />
+    </edge>
+    <edge source="com.example.demo.workflow.StandardWorkflow" target="com.example.demo.activity.HDFSActivity">
+      <point x="86.0" y="-47.5" />
+      <point x="412.0" y="414.0" />
+      <point x="775.0" y="414.0" />
+      <point x="0.0" y="47.5" />
+    </edge>
+    <edge source="com.example.demo.Application" target="com.example.demo.workflow.StandardWorkflow">
+      <point x="-91.33333333333331" y="-124.5" />
+      <point x="505.95833333333337" y="642.0" />
+      <point x="397.66666666666663" y="642.0" />
+      <point x="71.66666666666663" y="47.5" />
+    </edge>
+    <edge source="com.example.demo.activity.BaseActivity" target="com.example.demo.activity.Activity">
+      <point x="0.0" y="-48.0" />
+      <point x="423.25160256410265" y="98.0" />
+      <point x="278.72035256410265" y="98.0" />
+      <point x="49.25" y="36.5" />
+    </edge>
+    <edge source="com.example.demo.config.AppConfig" target="com.example.demo.workflow.StandardWorkflow">
+      <point x="-72.25" y="-47.0" />
+      <point x="217.91666666666666" y="642.0" />
+      <point x="254.33333333333334" y="642.0" />
+      <point x="-71.66666666666663" y="47.5" />
+    </edge>
+    <edge source="com.example.demo.workflow.StandardWorkflow" target="com.example.demo.activity.NothingActivity">
+      <point x="43.0" y="-47.5" />
+      <point x="369.0" y="404.0" />
+      <point x="520.0" y="404.0" />
+      <point x="0.0" y="13.0" />
+    </edge>
+    <edge source="com.example.demo.activity.HDFSActivity" target="com.example.demo.activity.BaseActivity">
+      <point x="-79.75" y="-47.5" />
+      <point x="695.25" y="249.0" />
+      <point x="484.81410256410265" y="249.0" />
+      <point x="61.5625" y="48.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7000000000000001" x="649.2857142857142" y="456.4285714285714" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
