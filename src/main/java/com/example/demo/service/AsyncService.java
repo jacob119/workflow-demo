@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
+import com.example.demo.job.Job;
 import com.example.demo.workflow.Workflow;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -14,7 +14,9 @@ public class AsyncService {
     public void doAsync(Workflow workflow) {
         try {
             Thread.sleep(500);
-            workflow.startWorkflow();
+            workflow.start(new Job() {
+
+            });
             // log.info("doAsync...........{}", workflow.doWorkflow());
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -1,6 +1,7 @@
 package com.example.demo.workflow;
 
 import com.example.demo.activity.*;
+import com.example.demo.job.Job;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -24,24 +25,35 @@ public class StandardWorkflow extends AbstractWorkflow {
         super(workflowName, parameters);
     }
 
-    public void startWorkflow() {
+    @Override
+    public ActivityResult start() {
 
-        List<Activity> activities = new ArrayList<>();
 
         HDFSActivity hdfsActivity = context.getBean(HDFSActivity.class);
 
         log.info("HDFS Activity=[{}]", hdfsActivity.hashCode());
 
-        activities.add(new NothingActivity("file"));
-        activities.add(new PollerActivity("poller"));
-        activities.add(new ParserActivity("parser"));
-        activities.add(new SaveActivity("save"));
-        activities.add(hdfsActivity);
+        super.add(new NothingActivity("file"));
+        super.add(new PollerActivity("poller"));
+        super.add(new ParserActivity("parser"));
+        super.add(new SaveActivity("save"));
+        super.add(hdfsActivity);
 
 
         // You have to define the lists of activities from some repositories( file or db ).
-        super.setActivities(activities);
 
-        super.doWorkflow();
+        return super.start();
     }
+
+    @Override
+    public ActivityResult start(Job job) {
+        return null;
+    }
+
+    @Override
+    public void stop() {
+
+    }
+
+
 }

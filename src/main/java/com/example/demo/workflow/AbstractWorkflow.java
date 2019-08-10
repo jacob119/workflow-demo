@@ -8,6 +8,7 @@ import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StopWatch;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -19,10 +20,10 @@ public abstract class AbstractWorkflow implements Workflow {
 
     @NonNull
     private String name;
-    private   List<Activity> activities;
+    private List<Activity> activities;
 
     public AbstractWorkflow(){
-
+        activities = new ArrayList<>();
     }
 
     public AbstractWorkflow(String name, Map<String, Object> parameters) {
@@ -41,8 +42,7 @@ public abstract class AbstractWorkflow implements Workflow {
         return this.activities;
     }
 
-    @Override
-    public ActivityResult doWorkflow() {
+    public ActivityResult start() {
         UUID uuid = UUID.randomUUID();
         String workflowId = "Id-" + uuid;
         log.info(">>{}==[{}]", "Started Workflow", workflowId);
@@ -93,7 +93,7 @@ public abstract class AbstractWorkflow implements Workflow {
         this.name = workflowName;
     }
 
-    public void setActivities(List<Activity> activities) {
-        this.activities = activities;
+    public void add(Activity activity) {
+        this.activities.add(activity);
     }
 }
