@@ -24,7 +24,7 @@ public class DefaultJobManager implements JobManager {
         }
     }
 
-    public boolean isExist(String id) {
+    private boolean isExist(String id) {
         return this.jobList.stream().anyMatch(s -> s.getId().equals(id));
     }
 

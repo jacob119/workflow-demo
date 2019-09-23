@@ -33,7 +33,7 @@ public class AppConfig {
 
     @Bean
     @Qualifier("dummyWorkflow")
-    @Scope("prototype")
+    @Scope(value = "prototype")
     public Workflow DummyWorkflow() {
         return new DummyWorkflow();
     }

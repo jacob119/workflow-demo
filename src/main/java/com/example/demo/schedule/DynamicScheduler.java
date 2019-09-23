@@ -16,6 +16,8 @@ public class DynamicScheduler {
         this.name = name;
         this.interval = interval;
         this.schedulerActor = schedulerActor;
+        this.scheduler = new ThreadPoolTaskScheduler();
+        this.scheduler.setThreadNamePrefix(name);
     }
 
     public void stop() {
@@ -23,11 +25,9 @@ public class DynamicScheduler {
     }
 
     public void start() {
-        scheduler = new ThreadPoolTaskScheduler();
-        scheduler.initialize();
+        this.scheduler.initialize();
         // 스케쥴러가 시작되는 부분
-        scheduler.setThreadNamePrefix(this.name);
-        scheduler.schedule(getRunnable(), getTrigger());
+        this.scheduler.schedule(getRunnable(), getTrigger());
     }
 
     private Runnable getRunnable() {

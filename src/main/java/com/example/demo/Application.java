@@ -85,46 +85,44 @@ public class Application implements CommandLineRunner {
 //        startWorkflow();
     }
 
+
     @Override
     public void run(String... args) throws Exception {
 
         // Step 1. make workflow.
-        Workflow dummyWorkflow = context.getBean("dummyWorkflow", DummyWorkflow.class);
+        Workflow dummyWorkflow1 = context.getBean("dummyWorkflow", DummyWorkflow.class);
 
-        dummyWorkflow.add(new NothingActivity("file"));
-        dummyWorkflow.add(new PollerActivity("poller"));
-        dummyWorkflow.add(new ParserActivity("parser"));
-        dummyWorkflow.add(new SaveActivity("save"));
+        dummyWorkflow1.setName("dummyWorkflow1");
+        dummyWorkflow1.add(new NothingActivity("file"));
 
         // Step 2. make workflow Manager.
         WorkflowManager defaultWorkflowManager = context.getBean(WorkflowManager.class);
 
         // Step 3. assign to workflow for working.
-        defaultWorkflowManager.add(dummyWorkflow);
+        defaultWorkflowManager.add(dummyWorkflow1);
 
         // Step 4. workflow Manager into JobManager.
         JobManager defaultJobManager = context.getBean(JobManager.class);
 
+
         // Step 5. Scheduling.
-        DynamicScheduler aa = new DynamicScheduler("etl", 2, defaultJobManager);
-
-        DynamicScheduler bb = new DynamicScheduler("etl888", 10, defaultJobManager);
-
-        schedulerManager.add(aa);
-        schedulerManager.add(bb);
-
+        DynamicScheduler scheduler1 = new DynamicScheduler("etl", 2, defaultJobManager);
+        schedulerManager.add(scheduler1);
         schedulerManager.startAll();
 
-//        DynamicScheduler aa = new DynamicScheduler("etl",2, );
-//        schedulerManager.add();
-//        DummyWorkflow dummyWorkflow = new DummyWorkflow();
-//        StandardWorkflow standardWorkflow = new StandardWorkflow();
-        //    DynamicScheduler aa = new DynamicScheduler("etl",2, dummyWorkflow);
-        //    DynamicScheduler bb = new DynamicScheduler("etl2",10, standardWorkflow);
+//        dummyWorkflow.add(new PollerActivity("poller"));
+//        dummyWorkflow.add(new ParserActivity("parser"));
+//        dummyWorkflow.add(new SaveActivity("save"));
 
-//        schedulerManager.add(aa);
-//        schedulerManager.add(bb);
+
+
+
+
+//        DynamicScheduler bb = new DynamicScheduler("etl888", 10, defaultJobManager);
 //
-//        schedulerManager.startAll();
+//
+//        schedulerManager.add(bb);
+
+
     }
 }

@@ -7,9 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JobConf {
-    private Map<String, Object> contexts;
-
     public JobConf() {
-        this.contexts = new HashMap<>();
+        Map<String, Object> contexts = new HashMap<>();
     }
 }

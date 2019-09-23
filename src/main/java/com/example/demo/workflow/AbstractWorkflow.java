@@ -22,8 +22,8 @@ public abstract class AbstractWorkflow implements Workflow {
     private String name;
     private List<Activity> activities;
 
-    public AbstractWorkflow(){
-        activities = new ArrayList<>();
+    public AbstractWorkflow() {
+        this.activities = new ArrayList<>();
     }
 
     public AbstractWorkflow(String name, Map<String, Object> parameters) {

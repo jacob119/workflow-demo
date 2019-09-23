@@ -7,10 +7,7 @@ public class StandardContext implements Context {
     private Map<String, Object> contexts;
 
     public StandardContext(Map<String, Object> parameters) {
-        if (parameters == null) {
-            this.contexts = new HashMap<>();
-        } else
-            this.contexts = parameters;
+        this.contexts = (parameters == null) ? new HashMap<>() : parameters;
     }
 
     @Override

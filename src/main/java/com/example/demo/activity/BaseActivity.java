@@ -25,6 +25,10 @@ public abstract class BaseActivity implements Activity {
         return this.name;
     }
 
+    @Override
+    public boolean isNil(){
+        return false;
+    }
 
     @Override
     public void doActivity(Context context) {

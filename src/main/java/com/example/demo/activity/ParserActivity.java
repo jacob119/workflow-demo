@@ -14,4 +14,5 @@ public class ParserActivity extends BaseActivity {
     public void doActivity(Context context) {
         log.info("+++ doParserActivity");
     }
+
 }
